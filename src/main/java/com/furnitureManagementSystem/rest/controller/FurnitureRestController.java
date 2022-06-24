@@ -21,6 +21,7 @@ import com.furnitureManagementSystem.rest.model.response.OperationStatusModel;
 import com.furnitureManagementSystem.rest.model.response.RequestOperationName;
 import com.furnitureManagementSystem.rest.model.response.RequestOperationStatus;
 import com.furnitureManagementSystem.service.FurnitureService;
+import com.furnitureManagementSystem.shared.PaginationParameter;
 import com.furnitureManagementSystem.shared.dto.FurnitureDto;
 
 @RestController
@@ -48,7 +49,7 @@ public class FurnitureRestController {
 
 		List<FurnitureRest> returnValue = new ArrayList<>();
 
-		List<FurnitureDto> furnitures = service.getFurnitures(page, limit);
+		List<FurnitureDto> furnitures = service.getFurnitures(new PaginationParameter(page, limit));
 
 		for (FurnitureDto furnitureDto : furnitures) {
 			FurnitureRest furnitureRest = new FurnitureRest();

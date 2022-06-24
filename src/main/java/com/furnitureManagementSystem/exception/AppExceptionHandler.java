@@ -15,10 +15,9 @@ import com.furnitureManagementSystem.rest.model.response.ErrorMessage;
 public class AppExceptionHandler {
 	// handle specific exception
 	@ExceptionHandler(value = { FurnitureServiceException.class })
-	public ResponseEntity<Object> handleUserServiceException(FurnitureServiceException ex, WebRequest request) {
+	public ResponseEntity<Object> handleFurnitureServiceException(FurnitureServiceException ex, WebRequest request) {
 
-		ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
-		return new ResponseEntity<>(errorMessage, new HttpHeaders(), ex.getStatus());
+		return ex.getErrorResponse();
 	}
 
 	// handle all the other exception

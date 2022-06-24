@@ -2,6 +2,7 @@ package com.furnitureManagementSystem.service;
 
 import java.util.List;
 
+import com.furnitureManagementSystem.shared.PaginationParameter;
 import com.furnitureManagementSystem.shared.dto.FurnitureDto;
 
 public interface FurnitureService {
@@ -9,7 +10,7 @@ public interface FurnitureService {
 
 	FurnitureDto getFurniture(String furnitureId);
 
-	List<FurnitureDto> getFurnitures(int page, int limit);
+	List<FurnitureDto> getFurnitures(PaginationParameter pagination);
 
 	FurnitureDto updateFurniture(String furnitureId, FurnitureDto furniture);
 

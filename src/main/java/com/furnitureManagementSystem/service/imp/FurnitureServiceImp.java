@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ import com.furnitureManagementSystem.io.entity.FurnitureEntity;
 import com.furnitureManagementSystem.io.repository.FurnitureRepository;
 import com.furnitureManagementSystem.rest.model.response.ErrorMessages;
 import com.furnitureManagementSystem.service.FurnitureService;
+import com.furnitureManagementSystem.shared.PaginationParameter;
 import com.furnitureManagementSystem.shared.Utils;
 import com.furnitureManagementSystem.shared.dto.FurnitureDto;
 
@@ -62,14 +62,11 @@ public class FurnitureServiceImp implements FurnitureService {
 	}
 
 	@Override
-	public List<FurnitureDto> getFurnitures(int page, int limit) {
+	public List<FurnitureDto> getFurnitures(PaginationParameter pagination) {
 
 		List<FurnitureDto> returnValue = new ArrayList<>();
 
-		if (page > 0)
-			page = page - 1;
-
-		Pageable pageableRequest = PageRequest.of(page, limit);
+		Pageable pageableRequest = pagination.getPageableRequest();
 
 		Page<FurnitureEntity> furnituresPage = repo.findAll(pageableRequest);
 

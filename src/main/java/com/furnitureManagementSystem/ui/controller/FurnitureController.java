@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.furnitureManagementSystem.rest.model.request.FurnitureDetailsRequestModel;
 import com.furnitureManagementSystem.service.FurnitureService;
+import com.furnitureManagementSystem.shared.PaginationParameter;
 import com.furnitureManagementSystem.shared.dto.FurnitureDto;
 
 @Controller
@@ -24,7 +25,7 @@ public class FurnitureController {
 	@GetMapping("/furnitures")
 	public String listAll(Model model) {
 
-		List<FurnitureDto> furnitures = service.getFurnitures(1, 25);
+		List<FurnitureDto> furnitures = service.getFurnitures(new PaginationParameter(1, 25));
 
 		model.addAttribute("furnitures", furnitures);
 		return "furnitures";
